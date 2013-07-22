@@ -1,5 +1,12 @@
-//08まで終了
+
 <?php
+/*
+サービス公開時とそうでない時で記述をいちいち書き換えるのは面倒な上にミスの元なので、極力最小の労力で設定が書き換わるようにしておくのが望ましい。以下はURLがlocalhostか否かで設定を切り替える例。
+*/     /**************/
+//html出力をエスケープ
+function h($s){
+    return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
+    }
 $title = "PHPでカレンダー";
 // 今月のカレンダー
 //timeStamp
@@ -57,9 +64,9 @@ for ($day = 1; $day <= $lastDay; $day++, $youbi++) {
 <table>
 <thead>
 <tr>
-<th><a href="?ym=<?php echo $prev;?>">&laquo;</a></th>
-<th colspan="5"><?php echo date("Y", $timeStamp)."-".date("m", $timeStamp);?></th>
-<th><a href="?ym=<?php echo $next; ?>">&raquo;</a></th>
+<th><a href="?ym=<?php echo h($prev);?>">&laquo;</a></th>
+<th colspan="5"><?php echo h(date("Y", $timeStamp)."-".date("m", $timeStamp));?></th>
+<th><a href="?ym=<?php echo h($next); ?>">&raquo;</a></th>
 </tr>
 <tr>
 <th>Sun</th>
