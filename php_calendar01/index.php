@@ -1,7 +1,7 @@
 //08まで終了
 <?php
 $title = "PHPでカレンダー";
-// 今月のカレンダー
+//// 今月のカレンダー
 //timeStamp
 $ym = isset($_GET['ym'])? $_GET['ym']:date("Y-m");
 $timeStamp = strtotime($ym."-01");
