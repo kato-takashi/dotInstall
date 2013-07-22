@@ -8,7 +8,7 @@ function h($s){
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
     }
 $title = "PHPでカレンダー";
-// 今月のカレンダー
+//// 今月のカレンダー
 //timeStamp
 $ym = isset($_GET['ym'])? $_GET['ym']:date("Y-m");
 $timeStamp = strtotime($ym."-01");
