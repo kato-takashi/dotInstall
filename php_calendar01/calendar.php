@@ -1,40 +1,57 @@
 <?php
-//calendar class
-$timeStamp = strtotime($ym."-01");
-if($timeStamp === false){
-        $timeStamp = time();
-    }
 
+class Calendar {
+    protected $weeks = array();
+    protected $timeStamp;
 
-// 最終日？
+    public function __construct($ym) {
+        $this->timeStamp = strtotime($ym . "-01");
 
-$lastDay = date("t", $timeStamp);
-
-// 1日は何曜日？
-// 0: Sun ... 6: Sat
-
-$youbi = date("w", mktime(0,0,0,date("m",$timeStamp),1,date("Y",$timeStamp)));
-$prev = date("Y-m", mktime(0,0,0,date("m",$timeStamp)-1,1,date("Y",$timeStamp)));
-$next = date("Y-m", mktime(0,0,0,date("m",$timeStamp)+1,1,date("Y",$timeStamp)));
-//var_dump($lastDay);
-//var_dump($youbi);
-
-//exit;
-
-$weeks = array();
-$week = '';
-
-$week .= str_repeat('<td></td>', $youbi);
-
-for ($day = 1; $day <= $lastDay; $day++, $youbi++) {
-    $week .= sprintf('<td class="week_%d">%d</td>', $youbi % 7, $day);
-
-    if ($youbi % 7 == 6 OR $day == $lastDay) {
-        if ($day == $lastDay) {
-            $week .= str_repeat('<td></td>', 6 - ($youbi % 7));
+        if ($this->timeStamp === false) {
+            $this->timeStamp = time();
         }
-        $weeks[] = '<tr>' . $week . '</tr>';
-        $week = '';
+
     }
+
+    public function create() {
+
+        $lastDay = date("t", $this->timeStamp);
+
+        $youbi = date("w", mktime(0,0,0,date("m",$this->timeStamp),1,date("Y",$this->timeStamp)));
+
+        $week = '';
+
+        $week .= str_repeat('<td></td>', $youbi);
+
+        for ($day = 1; $day <= $lastDay; $day++, $youbi++) {
+            $week .= sprintf('<td class="youbi_%d">%d</td>', $youbi % 7, $day);
+
+            if ($youbi % 7 == 6 OR $day == $lastDay) {
+                if ($day == $lastDay) {
+                    $week .= str_repeat('<td></td>', 6 - ($youbi % 7));
+                }
+                $this->weeks[] = '<tr>' . $week . '</tr>';
+                $week = '';
+            }
+        }
+
+    }
+
+    public function getWeeks() {
+        return $this->weeks;
+    }
+
+    public function prev() {
+        return date("Y-m", mktime(0,0,0,date("m",$this->timeStamp)-1,1,date("Y",$this->timeStamp)));    
+    }
+
+    public function next() {
+        return date("Y-m", mktime(0,0,0,date("m",$this->timeStamp)+1,1,date("Y",$this->timeStamp)));    
+    }
+
+    public function yearMonth() {
+        return date("Y-m", $this->timeStamp);
+    }
+
 }
 
