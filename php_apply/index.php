@@ -29,6 +29,7 @@ try {
 
 //echo "success!";
 //処理
+/*
 $sql = "select * from users";
 //$sqlCount = "select count(*) from users";
 $sqlCount = "select count(*) from users";
@@ -39,7 +40,17 @@ foreach($stmt->fetchAll() as $user){
 }
 echo $dbh->query($sqlCount)->fetchColumn() . "records found";
 // 切断
+*/
+/*
+$stmt = $dbh->prepare("insert into users (name, email, password) values(?, ?, ?)");
+$stmt->execute(array("n", "e", "p"));
+*/
+$stmt = $dbh->prepare("insert into users (name, email, password) values(:name, :email, :password)");
+$stmt->execute(array(":name"=>"n2", ":email"=>"e2", ":password"=>"p2"));
+echo "done";
+
 $dbh = null;
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
