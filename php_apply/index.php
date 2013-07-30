@@ -45,10 +45,17 @@ echo $dbh->query($sqlCount)->fetchColumn() . "records found";
 $stmt = $dbh->prepare("insert into users (name, email, password) values(?, ?, ?)");
 $stmt->execute(array("n", "e", "p"));
 */
-$stmt = $dbh->prepare("insert into users (name, email, password) values(:name, :email, :password)");
-$stmt->execute(array(":name"=>"n2", ":email"=>"e2", ":password"=>"p2"));
-echo "done";
+/*
+$stmt = $dbh->prepare("update users set email = :email where name like :name");
+$stmt->execute(array(":email"=>"dumy", ":name"=>"n%"));
+*/
+$stmt = $dbh->prepare("delete from users where password = :password");
+$stmt->execute(array(":password"=>"p10"));
 
+echo $stmt -> rowCount()."records deleted";
+
+//echo $dbh->lastInsertId();
+echo "done";
 $dbh = null;
 
 ?>
