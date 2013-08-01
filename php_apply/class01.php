@@ -12,19 +12,32 @@ if($is_develop){
           }
           /**************/
 
-$title='クラスを使ってみよう';
+$title='クラスを使ってみよう　継承';
 class User {
 	public $name;
 	public $email;
-	public function _constract(){
-	
+	public function __construct($name, $email){
+		$this->name = $name;
+		$this->email = $email;
 	}
-	
 	public function sayHi(){
-	
+		echo "hi! my name is ".$this->name;
 	}
+	
 }
 
+class superUser extends User {
+	public function superSayHi(){
+		echo "HIIIIIIIIIIIIIIIiiiiiiii! my name is ".$this->name;
+	}
+	
+}
+
+$tom = new User("tom", "dummy01@dymmy.com");
+$kim = new superUser("kim", "dummy01@dymmy.com");
+
+$kim->superSayHi();
+echo $kim->name;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -33,5 +46,7 @@ class User {
 		<title><?php echo $title; ?></title>
 	</head>
 	<body>
+	<?php echo $kim->sayHi(); ?>
+	</p>
 	</body>
 </html>
