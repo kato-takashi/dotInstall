@@ -11,27 +11,8 @@ if($is_develop){
         ini_set('display_errors', '0');
           }
           /**************/
-
+require_once('user.class.php');
 $title='クラスを使ってみよう　継承';
-class User {
-	public $name;
-	public $email;
-	public function __construct($name, $email){
-		$this->name = $name;
-		$this->email = $email;
-	}
-	public function sayHi(){
-		echo "hi! my name is ".$this->name;
-	}
-	
-}
-
-class superUser extends User {
-	public function superSayHi(){
-		echo "HIIIIIIIIIIIIIIIiiiiiiii! my name is ".$this->name;
-	}
-	
-}
 
 $tom = new User("tom", "dummy01@dymmy.com");
 $kim = new superUser("kim", "dummy01@dymmy.com");
