@@ -1,0 +1,29 @@
+<!DOCUTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>2次元バーコード作成!</title>
+	</head>
+	<body>
+		<h1>2次元バーコード作成</h1>
+		<p>
+			<form>
+				<input type="text" id="msg">text or url<br />
+				<input type="text" id="size">size(30~500px)<br />
+				<input type="button" value="変換" id="button">
+			</form>
+		</p>
+		<div id="barCode"></div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>// https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=hello
+			$(function(){
+				$('#button').click(function(){
+					var msg = encodeURIComponent($('#msg').val());
+					var size = $('#size').val()+"x"+$('#size').val();
+					var img = $('<img>').attr('src', 'https://chart.googleapis.com/chart?cht=qr&chs='+size+'&choe=Shift_JIS&chl='+msg);
+					$('#barCode').html(img);
+				});
+			});
+		</script>
+	</body>
+</html>
