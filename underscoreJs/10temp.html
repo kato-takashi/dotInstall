@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>underscore.js</title>
+</head>
+<body>
+    <script src="js/underscore-min.js"></script>
+    <script>
+        (function() {
+
+            var x;
+            var user = {
+                name: 'taguchi',
+                score: 50,
+                web: 'http://dotinstall.com'
+            };
+
+            // <% %>
+            // <%= %>
+            // <%- %>
+            var tpl = "<% console.log('hello from tpl'); %><li><%- name %> (<%- score %>)</li>";
+            x = _.template(tpl, user);
+
+            console.log(x);
+
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCUTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<title>Underscore.js</title>
+	</head>
+	<body>
+		<h1>Underscore.js</h1>
+		<p>
+		</p>
+		<script src="js/underscore-min.js"></script>
+		<script>
+			(function(){
+				/*
+				_.each([2, 5, 8], function(num){
+					console.log(num*2);
+				});
+				*/
+				var x =_.map([2, 5, 8], function(num){
+					return num*2;
+				});
+				console.log(x);
+			})();
+		</script>
+	</body>
+</html>

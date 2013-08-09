@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>underscore.js</title>
+</head>
+<body>
+    <script src="underscore-min.js"></script>
+    <script>
+        (function() {
+
+            var a = [1, 2, 5, 8, 42, 12];
+            var x;
+
+            /*
+            x = _.groupBy(a, function(num) {
+                return num % 3;
+            });
+            */
+
+            /*
+            x = _.countBy(a, function(num){
+                return num % 2 == 0 ? 'even' : 'odd';
+            });
+            */
+
+            /*
+            x = _.sortBy(a, function(num) {
+                return Math.sin(num);
+            });
+            */
+
+            x = _.sortBy(["me", "i", "and"], 'length');
+
+            console.log(x);
+
+        })();
+    </script>
+</body>
+</html>
