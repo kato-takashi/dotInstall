@@ -1,26 +1,32 @@
 (function(){
 	var Task = Backbone.Model.extend({
 	 defaults:{
-	 	title:'do it!',
+	 	title:'do something!',
 			completed: false
-		}, 
-		validate:function(attrs){
-			if(_.isEmpty(attrs.title)){
-				return "title must not be empty";
-			}
-		},
-		toggle:function(){
-			this.set('completed', !this.get('completed'));
 		}
 	});
-	var task1 = new Task({
-		completed: true
+	var task = new Task();
+	
+	////////////View
+	var TaskView = Backbone.View.extend({
+		tagName:'li',
+		events:{
+			"click .command":"sayHello"
+		},
+		sayHello:function(){
+			alert("say Hello!");
+		},
+		template: _.template($('#task-template').html()),
+		render: function(){
+			var template = this.template(this.model.toJSON());
+			this.$el.html(template);
+			return this;
+		}
 	});
-	//task1.set('title', 'newTitle');
-	//console.log(task1.toJSON());
-	//task1.toggle();
-	
-	task1.set({title: ''}, {validate: true});
-	console.log(task1.toJSON());
-	
+	var taskView = new TaskView({model: task});
+	console.log(taskView.render().el);
+	$('body').append(taskView.render().el);
 })();
+
+
+
