@@ -1,0 +1,27 @@
+記事
+- 一覧を表示
+- 個別記事を表示
+- 追加
+- 編集
+- 削除
+
+=====
+
+Model(Model/Post.php)
+-- mysql table
+
+Controller(Controller/PostsController.php)
+* scaffold
+- index
+- view
+- add
+- edit
+- delete
+
+View(View/Posts/)
+- index.ctp
+- view.ctp
+- add.ctp
+- edit.ctp
+
+
