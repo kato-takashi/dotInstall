@@ -1,7 +1,14 @@
 <?php
-require_once('config.php');
-require_once('codebird.php');
-require_once('htmlESC.php');
+require_once('./common/config.php');
+require_once('./common/codebird.php');
+require_once('./common/redirect.php');
+require_once('./common/htmlESC.php');
+
+session_start();
+if(empty($_SESSION['me'])){
+	redirect('login.php');
+	exit;
+}
 $title ='Twitterアカウントでログイン';
 ?>
 
