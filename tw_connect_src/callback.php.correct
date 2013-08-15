@@ -55,10 +55,10 @@ if (! isset($_SESSION['oauth_token'])) {
     // send to same URL, without oauth GET parameters
     header('Location: ' . basename(__FILE__));
     die();
-}
-$cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
+}$cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
    $me = $cb->account_verifyCredentials();
-
+    var_dump($me);
+    exit;
     // データベースに格納
     try {
         $dbh = new PDO(DSN, DB_USER, DB_PASSWORD);
@@ -81,8 +81,8 @@ $cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
         $params = array(
             ":tw_user_id" => $me->id_str,
             ":tw_screen_name" => $me->screen_name,
-            ":tw_access_token" => $_SESSION['oauth_token'],
-            ":tw_access_token_secret" => $_SESSION['oauth_token_secret']
+            ":tw_access_token" => $reply->oauth_token,
+            ":tw_access_token_secret" => $reply->oauth_token_secret
         );
         $stmt->execute($params);
         
