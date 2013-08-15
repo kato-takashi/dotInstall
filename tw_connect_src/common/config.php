@@ -11,6 +11,8 @@ define('DB_USER', $usrName);
 define('DB_PASSWORD', $pass);
 define('CONSUMER_KEY', $C_KEY);
 define('CONSUMER_SECRET', $C_SECRET);
+define('ACCESS_TOKEN_', $A_TOKEN);
+define('ACCESS_SECRET_', $A_SECRET);
 
 define('SITE_URL', 'http://localhost/test/dotinstall/tw_connect_php/tw_connect_src/');
 

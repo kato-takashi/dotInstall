@@ -16,13 +16,14 @@ require_once('./common/codebird.php');
 require_once('./common/redirect.php');
 require_once('./common/htmlESC.php');
 
-
-
 session_start();
-\Codebird\Codebird::setConsumerKey(CONSUMER_KEY, CONSUMER_SECRET);
 
+
+\Codebird\Codebird::setConsumerKey(CONSUMER_KEY, CONSUMER_SECRET);
 $cb = \Codebird\Codebird::getInstance();
-//$cb->setToken(ACCESS_TOKEN_, ACCESS_SECRET_);
+
+
+
 
 if (! isset($_GET['oauth_verifier'])) {
     // gets a request token
@@ -32,7 +33,6 @@ if (! isset($_GET['oauth_verifier'])) {
 
     // stores it
     $cb->setToken($reply->oauth_token, $reply->oauth_token_secret);
-
     $_SESSION['oauth_token'] = $reply->oauth_token;
     $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
 
@@ -44,7 +44,6 @@ if (! isset($_GET['oauth_verifier'])) {
 } else {
     // gets the access token
     $cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
-
     $reply = $cb->oauth_accessToken(array(
         'oauth_verifier' => $_GET['oauth_verifier']
     ));
@@ -53,10 +52,11 @@ if (! isset($_GET['oauth_verifier'])) {
     $cb->setToken($reply->oauth_token, $reply->oauth_token_secret);
     
     $me = $cb->account_verifyCredentials();
-    var_dump($reply->oauth_token);
+    
+    var_dump($me);
     exit;
     
-/*     // データベースに格納
+    // データベースに格納
     try {
         $dbh = new PDO(DSN, DB_USER, DB_PASSWORD);
     } catch (PDOException $e) {
@@ -98,6 +98,6 @@ if (! isset($_GET['oauth_verifier'])) {
     }
     
     // ホームに飛ばす
-    redirect('index.php'); */
+    redirect('index.php');
     
 }
