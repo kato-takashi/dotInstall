@@ -11,14 +11,29 @@ if($is_develop){
         ini_set('display_errors', '0');
           }
           /**************/
+          //CSRF対策
+session_start();
+/*  function setToken(){
+	$token = sha1(uniqid(mt_rand(), true));
+	$_SESSION['token'] = $token;
+}
+
+function checkToken(){
+	if(empty($_SESSION['token']) || ($_SESSION['token'] != $_POST['token']) ){
+		echo "不正なPOSTが行われました。！！";
+		exit;
+	}
+}  */
+require_once('common/setCheckToken.php');
+require_once('common/htmlESC.php');
 
 $title='PHP掲示板';
-require_once('common/htmlESC.php');
 $dataFile = 'bbs.dat';
 
 if($_SERVER['REQUEST_METHOD']=='POST' && 
 	isset($_POST['message'])&& 
 	isset($_POST['user'])){
+	checkToken();
 	
 	$message = trim($_POST['message']);
 	$user = trim($_POST['user']);
@@ -34,8 +49,11 @@ if($_SERVER['REQUEST_METHOD']=='POST' &&
 		fwrite($fp, $newData);
 		fclose($fp);
 	}
+}else{
+	setToken();
 }
-
+	$posts=file($dataFile, FILE_IGNORE_NEW_LINES);
+	$posts = array_reverse($posts);
 ?>
 
 <!DOCTYPE html>
@@ -50,10 +68,18 @@ if($_SERVER['REQUEST_METHOD']=='POST' &&
 			message: <input type="text" name="message">
 			user: <input type="text" name="user">
 			<input type="submit" value="投稿">
+			<input type="hidden" name="token" value="<?php echo h($_SESSION['token']); ?>">
 		</form>
-		<h2>投稿一覧（0件）</h2>
+		<h2>投稿一覧（<?php echo count($posts);?>）</h2>
 		<ul>
+		<?php if(count($posts)):?>
+			<?php foreach($posts as $post): ?>
+				<?php list($message, $user, $postedAt) = explode("\t", $post); ?>
+				<li><?php echo h($message); ?> (<?php echo h($user); ?>) - <?php echo h($postedAt); ?></li>
+			<?php endforeach; ?>
+		<?php else :?>
 			<li>投稿がありません。</li>
+		<?php endif ;?>
 		</ul>
 	</body>
 </html>
