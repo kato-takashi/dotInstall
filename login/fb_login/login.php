@@ -15,15 +15,10 @@ if($is_develop){
 require_once('common/htmlESC.php');
 require_once('common/config.php');
 
-session_start();
-//ログインチェック
-if(empty($_SESSION['user'])){
-	header('Location: '.SITE_URL.'login.php');
-	exit;
-}
+
 //友達情報の取得
 
-$title='facebookで友達一覧';
+$title='Login @facebook';
 
 ?>
 
@@ -35,7 +30,7 @@ $title='facebookで友達一覧';
 	</head>
 	<body>
 		<h1><?php echo h($title)?></h1>
-		
+		<a href="redirect.php">facebookでログイン</a>
 		<ul>
 		
 		</ul>

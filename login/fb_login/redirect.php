@@ -16,28 +16,21 @@ require_once('common/htmlESC.php');
 require_once('common/config.php');
 
 session_start();
-//ログインチェック
-if(empty($_SESSION['user'])){
-	header('Location: '.SITE_URL.'login.php');
-	exit;
+
+if(empty($_GET['code'])){
+	//認証の準備
+	$_SESSIOTN['state'] = sha1(uniqid(at_rand(), true));
+	$params = array(
+		'client_id'=> SITE_URL.'redirect.php', 
+		'state'=> $_SESSION['state'], 
+		'scope'=> 'user_website, friends_website'
+	);
+	$url = "https://www.facebook.com/dialog/oauth?".http_build_query($params);
+	// facebookに一旦飛ばす
+}else{
+	//認証後の処理
+	// ユーザー情報の取得
+	// 	DB処理
+	// 	ログイン処理
+	// 	index.php
 }
-//友達情報の取得
-
-$title='facebookで友達一覧';
-
-?>
-
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-	<meta chrset="UTF-8">
-	<title><?php echo h($title)?></title>
-	</head>
-	<body>
-		<h1><?php echo h($title)?></h1>
-		
-		<ul>
-		
-		</ul>
-	</body>
-</html>
