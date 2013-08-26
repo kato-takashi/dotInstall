@@ -54,8 +54,8 @@ if (empty($_GET['code'])) {
     
     $url = 'https://graph.facebook.com/me?access_token='.$access_token.'&fields=name,picture,birthday,email,bio';
     $me = json_decode(file_get_contents($url));
-    var_dump($me);
-    exit;
+    //var_dump($me);
+    //exit;
 
     // DB処理
     // DB処理
@@ -89,6 +89,7 @@ if (empty($_GET['code'])) {
     
     // ログイン処理
     if (!empty($user)) {
+    	//sessionハイジャック対策
         session_regenerate_id(true);
         $_SESSION['user'] = $user;
     }
