@@ -14,7 +14,6 @@ if($is_develop){
 
 require_once('common/htmlESC.php');
 require_once('common/config.php');
-require_once('common/connectDb.php');
 
 session_start();
 if (empty($_GET['code'])) {
@@ -60,15 +59,12 @@ if (empty($_GET['code'])) {
 
     // DB処理
     // DB処理
-    connectDb('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASSWORD);
-    $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
-////以下関数connectDb.phpにまとめる
-//     try {
-//         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
-//     } catch (PDOException $e) {
-//         echo $e->getMessage();
-//         exit;
-//     }
+    try {
+        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        exit;
+    }
     
     $stmt = $dbh->prepare("select * from users where facebook_user_id=:user_id limit 1");
     $stmt->execute(array(":user_id"=>$me->id));
