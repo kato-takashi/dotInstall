@@ -14,9 +14,54 @@ if($is_develop){
 
 require_once('common/htmlESC.php');
 require_once('common/config.php');
+require_once('common/connectDb.php');
+//firePHP　Console出力用
+require_once('common/FirePHPCore/FirePHP.class.php');
+require_once('common/FirePHPCore/fb.php');
 
 session_start();
+
 if (empty($_GET['code'])) {
+    // 認証前の処理
+
+    // 認証ダイアログの作成
+    // CSRF対策
+    $_SESSION['state'] = sha1(uniqid(mt_rand(), true));
+    
+    $params = array(
+        'client_id' => APP_ID,
+        'redirect_uri' => SITE_URL.'redirect.php',
+        'state' => $_SESSION['state'],
+        'approval_prompt' => 'force',
+        'scope' => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+        'response_type' => 'code'
+    );
+    
+    // googleへ飛ばす
+    $url = 'https://accounts.google.com/o/oauth2/auth?'.http_build_query($params);
+    header('Location: '.$url);
+    exit;
+////////fireBug 以下例
+// FB::log($url);　//ログ出力
+// FB::info($url); //インフォ出力
+// FB::warn($url); //警告出力
+// FB::error($url); //エラー出力
+}else{
+ //認証後の処理
+  //CSRF対策で$_SESSION['state']のチェック
+  if($_SESSION['state'] != $_GET['state']){
+  	echo "不正な処理が行われました";
+  	exit;
+  }
+
+ //access_tokenを取得
+ //ユーザー情報
+ //DBへ格納
+ //ログイン処理
+ //ホーム画面へ飛ばす
+}
+
+/* if (empty($_GET['code'])) {
     // 認証の準備
     
     $_SESSION['state'] = sha1(uniqid(mt_rand(), true));
@@ -96,4 +141,4 @@ if (empty($_GET['code'])) {
     
     // index.php
     header('Location: '.SITE_URL);
-}
+} */

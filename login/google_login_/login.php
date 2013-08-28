@@ -17,12 +17,7 @@ require_once('common/config.php');
 require_once('common/connectDb.php');
 
 ///////
-$title='Google Login サービス';
-session_start();
-
-if(empty($_SESSION['me'])){
-	header('Location: '.SITE_URL.'login.php');
-}
+$title='ログイン';
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +28,6 @@ if(empty($_SESSION['me'])){
 	</head>
 	<body>
 		<h1><?php echo h($title)?> home</h1>
-			
+			<a href='redirect.php'>Googleアカウントでログインする</a>
 	</body>
 </html>
