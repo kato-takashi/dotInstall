@@ -18,6 +18,11 @@ require_once('common/connectDb.php');
 //firePHP　Console出力用
 require_once('common/FirePHPCore/FirePHP.class.php');
 require_once('common/FirePHPCore/fb.php');
+////////fireBug 以下例
+//FB::log('test');　//ログ出力
+//FB::info('test'); //インフォ出力
+//FB::warn('test'); //警告出力
+// FB::error('test'); //エラー出力
 
 session_start();
 
@@ -41,104 +46,44 @@ if (empty($_GET['code'])) {
     $url = 'https://accounts.google.com/o/oauth2/auth?'.http_build_query($params);
     header('Location: '.$url);
     exit;
-////////fireBug 以下例
-// FB::log($url);　//ログ出力
-// FB::info($url); //インフォ出力
-// FB::warn($url); //警告出力
-// FB::error($url); //エラー出力
 }else{
- //認証後の処理
-  //CSRF対策で$_SESSION['state']のチェック
-  if($_SESSION['state'] != $_GET['state']){
-  	echo "不正な処理が行われました";
-  	exit;
-  }
+		 //認証後の処理
+		  //CSRF対策で$_SESSION['state']のチェック
+		  if($_SESSION['state'] != $_GET['state']){
+		  	echo "不正な処理が行われました";
+		  	exit;
+		  }
+		
+		 //access_tokenを取得
+		$params = array(
+			'client_id'=>APP_ID,
+			'client_secret'=>APP_SECRET,
+			'code'=> $_GET['code'],
+			'redirect_uri'=> SITE_URL.'redirect.php',
+			'grant_type'=>'authorization_code'
+		);
+		$url = 'https://accounts.google.com/o/oauth2/token';
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_POST, 1);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		
+		$rs = curl_exec($curl);
+		curl_close($curl);
+		$json = json_decode($rs);
 
- //access_tokenを取得
- //ユーザー情報
- //DBへ格納
+		//var_dump($json);exit;
+		 //ユーザー情報
+		$url ='https://www.googleapis.com/oauth2/v1/userinfo?access_token='.$json->access_token;
+		$me= json_decode(file_get_contents($url));
+		//var_dump($me);exit;
+		//DBへ格納
+		$dbh = connectDb(DNS, DB_USER, DB_PASSWORD);
+		$sql="select * from users where google_user_id = id limit 1";
+		$stmt = $dbh->prepare($sql);
+		$stmt =execute(array(":id"=> $me->id));
+		$user = $stmt->fetch();
  //ログイン処理
  //ホーム画面へ飛ばす
 }
-
-/* if (empty($_GET['code'])) {
-    // 認証の準備
-    
-    $_SESSION['state'] = sha1(uniqid(mt_rand(), true));
-    $params = array(
-        'client_id' => APP_ID,
-        'redirect_uri' => SITE_URL.'redirect.php',
-        'state' => $_SESSION['state'],
-        'scope' => 'user_birthday,user_website,friends_website, friends_birthday'
-    );
-    
-    $url = "https://www.facebook.com/dialog/oauth?".http_build_query($params);    
-    
-    // facebookに一旦飛ばす
-    header('Location: '.$url);
-    exit;
-
-} else {
-    // 認証後の処理
-    // CSRF対策
-    if ($_SESSION['state'] != $_GET['state']) {
-        echo "不正な処理！";
-        exit;
-    }
-    
-    // ユーザー情報の取得
-    $params = array(
-        'client_id' => APP_ID,
-        'client_secret' => APP_SECRET,
-        'code' => $_GET['code'],
-        'redirect_uri' => SITE_URL.'redirect.php'
-    );
-    $url = 'https://graph.facebook.com/oauth/access_token?'.http_build_query($params);    
-    $body = file_get_contents($url);
-    parse_str($body);
-    
-    $url = 'https://graph.facebook.com/me?access_token='.$access_token.'&fields=name,picture,birthday,email,bio';
-    $me = json_decode(file_get_contents($url));
-    //var_dump($me);
-    //exit;
-
-    // DB処理
-    // DB処理
-    try {
-        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        exit;
-    }
-    
-    $stmt = $dbh->prepare("select * from users where facebook_user_id=:user_id limit 1");
-    $stmt->execute(array(":user_id"=>$me->id));
-    $user = $stmt->fetch();
-
-    if (empty($user)) {
-        $stmt = $dbh->prepare("insert into users (facebook_user_id, facebook_name, facebook_birthday,facebook_picture, facebook_access_token, created, modified) values (:user_id, :name,:birthday, :picture, :access_token, now(), now());");
-        $params = array(
-            ":user_id"=>$me->id,
-            ":name"=>$me->name,
-            ":birthday"=>$me->birthday,
-            ":picture"=>$me->picture->data->url,
-            ":access_token"=>$access_token
-        );
-        $stmt->execute($params);
-        $stmt = $dbh->prepare("select * from users where id=:last_insert_id limit 1");
-        $stmt->execute(array(":last_insert_id"=>$dbh->lastInsertId()));
-        $user = $stmt->fetch();        
-    }
-     //var_dump($user);
-     //exit;
-    
-    // ログイン処理
-    if (!empty($user)) {
-    	//sessionハイジャック対策
-        session_regenerate_id(true);
-        $_SESSION['user'] = $user;
-    }
-    
-    // index.php
-    header('Location: '.SITE_URL);
-} */
