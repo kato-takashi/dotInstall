@@ -18,13 +18,11 @@ function handler(req, res){
 }
 io.sockets.on('connection', function(socket){
 	socket.on('emit_from_client', function(data) {
-		//console.log(data);
-		//
-		//emit 接続しているソケットのみ
-		//broadcast.emit 接続しているソケット以外全部
-		//io.sockets.emit 接続しているソケットすべて
-		//
-		io.sockets.emit('emit_from_server', '['+ socket.id +']: '+ data);
-
+		socket.set('client_name', data.name);
+		socket.get('client_name', function(err, name){
+			io.sockets.emit('emit_from_server', '['+ name +']: '+ data.msg);
+	
+		});
+		
 	});
 });

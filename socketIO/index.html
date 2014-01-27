@@ -20,7 +20,10 @@
 			//
 			$('#myForm').submit(function(e) {
 				e.preventDefault();
-				socket.emit('emit_from_client', $('#msg').val());
+				socket.json.emit('emit_from_client', {
+					msg: $('#msg').val(),
+					name: $('#name').val()
+			});
 				$('#msg').val('').foucus();
 			});
 			socket.on('emit_from_server', function(data){
