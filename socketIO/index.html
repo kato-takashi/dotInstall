@@ -6,7 +6,10 @@
 </head>
 <body>
 	<form id="myForm">
-		<input type="text" id="name">
+		<select id="rooms">
+			<option value="room-1">Room 1</option>
+			<option value="room-2">Room 2</option>
+		</select>
 		<input type="text" id="msg"><input type="submit" value="Send!">
 	</form>
 	<ul id="logs"></ul>
@@ -22,9 +25,9 @@
 				e.preventDefault();
 				socket.json.emit('emit_from_client', {
 					msg: $('#msg').val(),
-					name: $('#name').val()
+					room: $('#rooms').val()
 			});
-				$('#msg').val('').foucus();
+				$('#msg').val('').focus();
 			});
 			socket.on('emit_from_server', function(data){
 				$('#logs').append($('<li>').text(data));
