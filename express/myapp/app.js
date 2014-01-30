@@ -1,15 +1,16 @@
 var express = require('express'),
 	app = express();
+
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'ejs');
+
 	//middleware
 app.use(express.logger('dev'));
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
-app.use(function(req, res, next){
-	console.log('my custom middleware nodemon!');
-	next();
-});
-app.get('/hello.txt', function(req, res){
-	res.send('hello from app.js');	
+
+app.get('/', function(req, res){
+	res.render('index.ejs', {title:'title'});	
 	
 });
 
