@@ -4,13 +4,19 @@ var express = require('express'),
 app.use(express.logger('dev'));
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
-app.use(function(req, res, next){
-	console.log('my custom middleware nodemon!');
+
+app.param('id', function(req, res, next, id){
+	var users = ['kato', 'takashi', 'Chiharu'];
+	req.params.name = users[id];
 	next();
 });
-app.get('/hello.txt', function(req, res){
-	res.send('hello from app.js');	
-	
+
+app.get('/hello/:id', function(req, res){
+	res.send('hello ' + req.params.name);
+});
+
+app.get('/bye/:id', function(req, res){
+	res.send('bye ' + req.params.name);
 });
 
 app.listen(3000);
