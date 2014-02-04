@@ -15,6 +15,7 @@ var express = require('express'),
 
         //routiong
         app.get('/', post.index );
+        app.get('/posts/:id', post.show);
         
         // app.get('posts/new', post.new);
         // app.post('posts/create', post.create); 
