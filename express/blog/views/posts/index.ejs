@@ -7,10 +7,11 @@
 				<%= posts[i].title %>
 			</li>
 		</a>
-		<a href="/posts/<%= i%>/edit">
-			[Edit]
-		</a>
+		
 		<form method="post" action="/posts/<%= i %>">
+			<a href="/posts/<%= i%>/edit">
+				[Edit]
+			</a>
 			<input type="submit" value="del">
 			<input type="hidden" name="_method" value="delete">
 			<input type="hidden" name="id" value="<%= i %>">
