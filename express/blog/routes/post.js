@@ -11,3 +11,15 @@ exports.index = function(req, res){
 exports.show = function(req, res){
 	res.render('posts/show.ejs', {post: posts[req.params.id]});
 };
+exports.new = function(req, res){
+	res.render('posts/new.ejs');
+};
+exports.create = function(req, res){
+	var post = {
+		title: req.body.title,
+		body: req.body.body
+	};
+	posts.push(post);
+	res.redirect('/');
+
+};

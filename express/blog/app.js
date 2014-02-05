@@ -15,14 +15,13 @@ var express = require('express'),
 
         //routiong
         app.get('/', post.index );
-        app.get('/posts/:id', post.show);
-        
-        // app.get('posts/new', post.new);
-        // app.post('posts/create', post.create); 
-        // app.get('posts/:id', post.show);
-        // app.get('posts/:id/edit', post.edit);
-        // app.put('posts/:id', post.update);
-        // app.delete('posts/:id', post.destroy);
+        app.get('/posts/:id([0-9]+)', post.show);
+        app.get('/posts/new', post.new);
+        app.post('/posts/create', post.create); 
+        // app.get('/posts/:id', post.show);
+        // app.get('/posts/:id/edit', post.edit);
+        // app.put('/posts/:id', post.update);
+        // app.delete('/posts/:id', post.destroy);
         
         app.listen(3000);
         console.log("server starting...http://127.0.0.1:3000/");

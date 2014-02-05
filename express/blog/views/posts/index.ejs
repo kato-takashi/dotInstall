@@ -7,7 +7,15 @@
 				<%= posts[i].title %>
 			</li>
 		</a>
-		
+		<a href="/posts/<%= i%>/edit">
+			[Edit]
+		</a>
+		<form method="post" action="/posts/<%= i %>">
+			<input type="submit" value="del">
+			<input type="hidden" name="_method" value="delete">
+			<input type="hidden" name="id" value="<%= i %>">
+		</form>
 		<% } %>
 	</ul>
+	<p><a href="/posts/new">Add New</a></p>
 <% include ../footer.ejs %>
