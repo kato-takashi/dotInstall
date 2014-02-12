@@ -12,16 +12,17 @@
 	//var material = new THREE.MeshBasicMaterial({color: "#ff0000"});
 	var material = new THREE.MeshLambertMaterial({color: "#ff0000"});
 	var cube = new THREE.Mesh(geometry, material);
-	cube.position.set(0, 0, 0); // rotate, scaleができる
+	cube.position.set(0, 50, 0); // rotate, scaleができる
 	scene.add(cube);
 
-	//sphere
-	var sGeometry = new THREE.SphereGeometry(30);
-	//var material = new THREE.MeshBasicMaterial({color: "#ff0000"});
-	var sMaterial = new THREE.MeshLambertMaterial({color: "#ffff00"});
-	var sphere = new THREE.Mesh(sGeometry, sMaterial);
-	sphere.position.set(100, 100, 100); // rotate, scaleができる
-	scene.add(sphere);
+	//plane
+	var pGeometry = new THREE.PlaneGeometry(300, 300);
+	var pMaterial = new THREE.MeshLambertMaterial({color: 0x0096d6, 
+													side:THREE.DoubleSide });
+	var plane = new THREE.Mesh(pGeometry, pMaterial);
+	plane.position.set(0,0, 0); 
+	plane.rotation.x = 90* Math.PI /180;
+	scene.add(plane);
 
 	//light
 	var light = new THREE.DirectionalLight(0xffffff, 1);
@@ -32,10 +33,7 @@
 	
 	//camera
 	var camera = new THREE.PerspectiveCamera(45, width/height, 1, 1000);
-	//camera.position.set(0, 0, 0);
-	//camera.position.x = 0;
-	//camera.position = new THREE.Vector3(0, 0, 0);
-	camera.position.set(200, 200, 500);
+	camera.position.set(200, 300, 500);
 	camera.lookAt(cube.position);
 
 	//helper
