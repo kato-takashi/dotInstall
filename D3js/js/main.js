@@ -8,13 +8,17 @@ p.text("hello from d3!")
 		"font-size": "28px",
 		"font-weight": "bold"
 	});
-
-
+*/
+var dataset = [12, 24, 36];
 var p = d3.select("body").selectAll("p");
-p.style("font-size", function(){
-	return Math.floor(Math.random()*29 )+ "px";
+/*
+p.data(dataset).text(function(d){
+	return d;
 });
 */
+p.data(dataset).text(function(d, i){
+	return i + "番目は" + d + 'です。';
+});
 
-d3.select("body").append('p').text("hello from  append").remove();
+//d3.select("body").append('p').text("hello from  append").remove();
 //alert(p.style("font-size"));
