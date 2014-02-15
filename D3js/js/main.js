@@ -8,10 +8,13 @@ p.text("hello from d3!")
 		"font-size": "28px",
 		"font-weight": "bold"
 	});
-*/
+
 
 var p = d3.select("body").selectAll("p");
 p.style("font-size", function(){
 	return Math.floor(Math.random()*29 )+ "px";
 });
+*/
+
+d3.select("body").append('p').text("hello from  append").remove();
 //alert(p.style("font-size"));
