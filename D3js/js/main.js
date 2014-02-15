@@ -9,16 +9,34 @@ p.text("hello from d3!")
 		"font-weight": "bold"
 	});
 */
-var dataset = [12, 24, 36];
+// var dataset = [12, 24, 36, 48];
+var dataset = [12, 24];
 var p = d3.select("body").selectAll("p");
-/*
-p.data(dataset).text(function(d){
-	return d;
-});
+/*dataをつかった瞬間に仮想領域が作られる　->
+update: 対応する要素がある場合 -> text, style
+enter:　対応する要素が足りない場合 -> append
+exit:　対応する要素が余った場合 -> remove
+
 */
-p.data(dataset).text(function(d, i){
-	return i + "番目は" + d + 'です。';
+
+var update  = p.data(dataset);
+var exit = update.exit();
+
+update.text(function(d){
+	return "update: "+ d;
 });
+
+exit.style("color", "red");
+
+/*var enter = update.enter();
+
+update.text(function(d){
+	return "update: "+ d;
+});
+
+enter.append('p').text(function(d){
+	return "enter: " +d
+});*/
 
 //d3.select("body").append('p').text("hello from  append").remove();
 //alert(p.style("font-size"));
