@@ -1,12 +1,10 @@
 // 正規表現
-// メタ文字
-// [abc] a or b or c
-//[a-z] a-z どれか
-//[^abc] not
-//
+/*. -> 任意の一文字
+^ ->行頭
+$ ->行末*/
  
-var s ='@teguchi, @fkoji, @dotinstall';
-var rs = s.match(/t[^ao]guchi/);
+var s ='@taguchi, @fkoji, @dotinstall';
+var rs = s.match(/@dotinstall$/);
 
 if(rs){
 	console.log("マッチしました！");
