@@ -16,19 +16,33 @@ svg.selectAll("circle")
 			.data(dataset)
 			.enter()
 			.append("circle")
-			.attr({
-				cx: function(d, i){return num1 + (i* num2);},
-				cy: h/2,
-				r: 0,
-				fill:"red"
-			})
 			.transition()
 			.delay(function(d, i){
 				return i*300;
 			})
 			.duration(1000)
 			.ease("bounce")
+			.each("start", function(){
+				d3.select(this).attr({
+					fill: "green",
+					r:0,
+					cy: h
+				});
+			})
 			.attr({
-				r: function(d){return d;}
+				cx: function(d, i){return num1 + (i* num2);},
+				cy: h/2,
+				r: function(d){return d;},
+				fill:"red"
+			})
+			.each("end", function(d){
+				d3.select(this)
+				.transition()
+				.duration(800)
+				.attr({
+					fill: "pink",
+					r:0,
+					cy:0
+				});
 			});
 			
