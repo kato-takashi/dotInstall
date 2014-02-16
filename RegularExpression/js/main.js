@@ -23,12 +23,12 @@ a+ 1 or more -> a, aaa, aaa....
 (abc) RegExp マッチしたものを抽出
 */
  
-var s ='taguchi@dotinstall.com';
-var rs = s.match(/(.+?)@dotinstall.(.+)/);
+var s ='@taguchi';
+var rs = s.match(/(@[A-Za-z0-9_]{1,15})/);
 
 
 if(rs){
-	console.log(RegExp.$2);
+	console.log(RegExp.$1);
 }else{
 	console.log("あれっ？");
 }
