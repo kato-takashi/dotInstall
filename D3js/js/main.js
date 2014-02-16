@@ -16,6 +16,17 @@ svg.selectAll("circle")
 			.data(dataset)
 			.enter()
 			.append("circle")
+			.on("mouseover", function(d){
+				d3.select(this).attr("fill", "orange");
+			})
+			.on("mouseout", function(d){
+				d3.select(this).attr("fill", "red");
+			})
+			.on("click", function(d){
+				var rs = d3.select(this).attr("r");
+				alert(rs);
+				
+			})
 			.transition()
 			.delay(function(d, i){
 				return i*300;
@@ -35,14 +46,5 @@ svg.selectAll("circle")
 				r: function(d){return d;},
 				fill:"red"
 			})
-			.each("end", function(d){
-				d3.select(this)
-				.transition()
-				.duration(800)
-				.attr({
-					fill: "pink",
-					r:0,
-					cy:0
-				});
-			});
+			;
 			
