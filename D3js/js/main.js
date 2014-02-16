@@ -1,17 +1,25 @@
 //D3.js
 // 1 要素を指定して　select selectAll
 // 2 設定したり、取得したり text arrt
-/*
-var p = d3.select("body").selectAll("p");
-p.text("hello from d3!")
-	.style({
-		"font-size": "28px",
-		"font-weight": "bold"
-	});
-*/
 
-var p = d3.select("body").selectAll("p");
-p.style("font-size", function(){
-	return Math.floor(Math.random()*29 )+ "px";
-});
-//alert(p.style("font-size"));
+var dataset = [11, 25, 45, 30, 33];
+var w = 500;
+var h = 200;
+
+
+var num1 = 50;
+var num2 = 100;
+
+
+var svg = d3.select("body").append("svg").attr({width:w, height:h});
+svg.selectAll("circle")
+			.data(dataset)
+			.enter()
+			.append("circle")
+			.attr({
+				cx: function(d, i){return num1 + (i* num2);},
+				cy: h/2,
+				r: function(d){return d},
+				fill:"red"
+			});
+			
