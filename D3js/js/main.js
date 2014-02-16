@@ -19,7 +19,16 @@ svg.selectAll("circle")
 			.attr({
 				cx: function(d, i){return num1 + (i* num2);},
 				cy: h/2,
-				r: function(d){return d},
+				r: 0,
 				fill:"red"
+			})
+			.transition()
+			.delay(function(d, i){
+				return i*300;
+			})
+			.duration(1000)
+			.ease("bounce")
+			.attr({
+				r: function(d){return d;}
 			});
 			
