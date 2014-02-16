@@ -15,14 +15,20 @@ a+ 1 or more -> a, aaa, aaa....
  i -> 大文字小文字を区別しない　tagchu TAGUCHI
  g -> すべてのマッチした要素を配列で返す
  m -> 複数業に対応させる　改行も含めてマッチ
+
+ 最小マッチ
+ 
+ *+ のあとの? -> 最小マッチ
+
+(abc) RegExp マッチしたものを抽出
 */
  
-var s ='@taguchi, @fkoji, @dotinstall';
-var rs = s.match(/a/g);
+var s ='taguchi@dotinstall.com';
+var rs = s.match(/(.+?)@dotinstall.(.+)/);
 
 
 if(rs){
-	console.log(rs.length);
+	console.log(RegExp.$2);
 }else{
 	console.log("あれっ？");
 }
