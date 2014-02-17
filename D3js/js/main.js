@@ -6,13 +6,38 @@ var dataset = [11, 25, 45, 30, 33];
 var w = 500;
 var h = 200;
 
-
-var num1 = 50;
+var num1 = 20;
 var num2 = 100;
+
+var dMin = 0;
+var dMax = 50;
+
+// スケールの定義
+var xScale = d3.scale.linear()
+			.domain([dMin, d3.max(dataset)])
+			.range([0, w])
+			.nice(); //nice() キリの良い数字にしてくれるよ
+
+
+
 
 
 var svg = d3.select("body").append("svg").attr({width:w, height:h});
-svg.selectAll("circle")
+
+svg.selectAll("rect")
+	.data(dataset)
+	.enter()
+	.append('rect')
+	.attr({
+		x:0,
+		y: function(d, i){return i*25;},
+		width: function(d){return xScale(d);},
+		height:num1,
+		fill:"red"
+	});
+
+
+/*svg.selectAll("circle")
 			.data(dataset)
 			.enter()
 			.append("circle")
@@ -46,5 +71,5 @@ svg.selectAll("circle")
 				r: function(d){return d;},
 				fill:"red"
 			})
-			;
+			;*/
 			
