@@ -1,18 +1,40 @@
-//google Chart Tool js
-google.load("visualization", "1.0", {"packages": ["corechart"]});
-google.setOnLoadCallback(drawChart);
+var timers = [];
+var nums = [];
+var stopCount = 0;
 
-function drawCart(){
-	// 円グラフ
-	// 1.データを用意する
-	var data = new google.visualization.DataTable();
-	data.addColumn("string", "活動");
-	data.addColumn("number", "時間");
-	data.addRows([
-			["睡眠", 12],
-			["仕事", 12],
-		]);
+(function startSlot(){
+	//	alert("test")
+	runSlot(0);
+	runSlot(1);
+	runSlot(2);
+})();
 
-	// 2.グラフのオプションを指定する
-	// 3.描画する
+function runSlot(n){
+	document.getElementById("num"+n).innerHTML = Math.floor(Math.random()*3);
+	timers[n] = setTimeout(function(){
+		runSlot(n);
+	}, 50);
+}
+
+function stopSlot(n){
+	clearTimeout(timers[n]);
+	nums[n] = document.getElementById("num"+n).innerHTML;
+	stopCount++;
+
+	if(stopCount == 3){
+		checkSlot();
+		console.log(nums);
+	}
+}
+
+function checkSlot(){
+	// alert("check!");
+	nums.sort();
+	if(nums[0] == nums[1] && nums[0] == nums[2]){
+		alert("全部そろったよ！");
+	}else if(nums[0] == nums[1] ||  nums[0] == nums[2]){
+		alert("二つそろったよ！");
+	}else{
+		console.log("残念。");
+	}
 }
