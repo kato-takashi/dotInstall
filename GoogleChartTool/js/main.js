@@ -3,7 +3,7 @@ google.load("visualization", "1.0", {"packages": ["corechart"]});
 google.setOnLoadCallback(drawChart);
 
 function drawChart(){
-	// 棒グラフ
+	// 折れ線グラフ
 	// 1.データを用意する
 	var data = new google.visualization.DataTable();
 	data.addColumn("string", "年");
@@ -26,6 +26,6 @@ function drawChart(){
 		isStacked: true
 	};
 	// 3.描画する
-	var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+	var chart = new google.visualization.LineChart(document.getElementById('chart'));
 	chart.draw(data, options);
 }
