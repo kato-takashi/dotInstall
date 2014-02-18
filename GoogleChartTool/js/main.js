@@ -26,6 +26,6 @@ function drawChart(){
 		isStacked: true
 	};
 	// 3.描画する
-	var chart = new google.visualization.BarChart(document.getElementById('chart'));
+	var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
 	chart.draw(data, options);
 }
