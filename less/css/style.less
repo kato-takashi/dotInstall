@@ -1,7 +1,10 @@
-@color: red;
+@color: #880000;
 @h1size: 24px;
 @h2size: (@h1size /2)+5;
 @myurl: 'http://dotinstall.com/lessons/basic_less/2605';
+
+@color02: @color+#333333;
+
 //test--
 h1 {
   color: @color;
@@ -9,7 +12,7 @@ h1 {
 }
 
 h2 {
-  color: @color;
+  color: @color02;
   font-size: @h2size;
   background-image: url("@{myurl}");
 }
