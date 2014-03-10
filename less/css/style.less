@@ -5,9 +5,9 @@
 
 @color02: @color+#333333;
 
-.myBorder{
-	border-top: 1px solid red;
-	border-bottom: 1px solid red;
+.myBorder(@myWidth:4px){
+	border-top: @myWidth solid red;
+	border-bottom: @myWidth*2 solid red;
 }
 
 //test--
@@ -21,4 +21,5 @@ h2 {
   color: @color02;
   font-size: @h2size;
   background-image: url("@{myurl}");
+  .myBorder(10px);
 }
