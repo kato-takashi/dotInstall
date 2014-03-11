@@ -4,7 +4,16 @@
 	%head
 		%meta(charset="UTF-8")
 		%body
-			%div{:id => "main", :class => "myClass"}
-			%div(id="main" class="myclass")
-			%div#main.myclass
-			#main2.myclass
+			:css
+				.myStyle{
+					color: red;
+				}
+			:javascript
+				alert(1);
+				if(1){
+					alert(2);
+				}
+			%div
+				:escaped
+					<html>
+					</html>
