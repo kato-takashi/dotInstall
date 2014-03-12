@@ -1,0 +1,13 @@
+h1 {
+  color: #880000;
+  font-size: 24px;
+  border-top: 4px solid #ff0000;
+  border-bottom: 8px solid #ff0000;
+}
+h2 {
+  color: #bb3333;
+  font-size: 17px;
+  background-image: url("http://dotinstall.com/lessons/basic_less/2605");
+  border-top: 10px solid #ff0000;
+  border-bottom: 20px solid #ff0000;
+}

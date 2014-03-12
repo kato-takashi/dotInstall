@@ -1,0 +1,25 @@
+@color: #880000;
+@h1size: 24px;
+@h2size: (@h1size /2)+5;
+@myurl: 'http://dotinstall.com/lessons/basic_less/2605';
+
+@color02: @color+#333333;
+
+.myBorder(@myWidth:4px){
+	border-top: @myWidth solid red;
+	border-bottom: @myWidth*2 solid red;
+}
+
+//test--
+h1 {
+  color: @color;
+  font-size: @h1size;
+  .myBorder;
+}
+
+h2 {
+  color: @color02;
+  font-size: @h2size;
+  background-image: url("@{myurl}");
+  .myBorder(10px);
+}
