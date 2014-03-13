@@ -1,7 +1,28 @@
+// cssにコメントが反映されない
+// データ型（数値、　文字列、審議、色、リスト）
+// + - / * 
+// 
+$baseFontSize: 14px;
+$imgDir:"../img/"; 
+$brandColor1: red;
+$brandColor2: rgba(255, 0, 0, 0.9);
+//lighten darken
+
 #main{
 	width:90%;
+	//backgrount: url($imgDir + "bg.png");
+	backgrount: url("#{$imgDir}bg2.png");
 	p {
-		font-size:16px;
-		
+		font-size:$baseFontSize;
+		color: lighten($brandColor2, 30%);
+		.sub{
+			font-size:#{12 + 12}px;
+		}
+		a{
+			text-decoration:none;
+			&:hover{
+				font-weight: bold;
+			}
+		}	
 	}
 }
