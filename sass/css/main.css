@@ -1,17 +1,3 @@
 #main {
-  width: 90%;
-  backgrount: url("../img/bg2.png");
-}
-#main p {
-  font-size: 14px;
-  color: rgba(255, 153, 153, 0.9);
-}
-#main p .sub {
-  font-size: 24px;
-}
-#main p a {
-  text-decoration: none;
-}
-#main p a:hover {
-  font-weight: bold;
+  color: red;
 }
