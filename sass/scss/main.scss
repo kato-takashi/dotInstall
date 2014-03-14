@@ -1,10 +1,21 @@
-#main{
-	width:90%;
-	p {
-		font-size:16px;	
-	}
-	ul{
-		float:left;
-	}
+// cssにコメントが反映されない
+// データ型（数値、　文字列、審議、色、リスト）
+// 条件分岐@if @else 
+// 
 
+$debugMode: true;
+$x: 10;
+
+
+#main{
+	@if	$debugMode == true {
+		color: red;
+	} @else{
+		color:green;
+	}
+	p{
+		@if $x >20 {
+			color: yellow;
+		}
+	}
 }
