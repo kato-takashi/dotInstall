@@ -1,32 +1,8 @@
-#main {
-  color: red; }
+.cat-icon {
+  background: url("cat.png"); }
 
-.fs10 {
-  font-size: 10px; }
+.dog-icon {
+  background: url("dog.png"); }
 
-.fs11 {
-  font-size: 11px; }
-
-.fs12 {
-  font-size: 12px; }
-
-.fs13 {
-  font-size: 13px; }
-
-.fs14 {
-  font-size: 14px; }
-
-.fs20 {
-  font-size: 20px; }
-
-.fs21 {
-  font-size: 21px; }
-
-.fs22 {
-  font-size: 22px; }
-
-.fs23 {
-  font-size: 23px; }
-
-.fs24 {
-  font-size: 24px; }
+.tiger-icon {
+  background: url("tiger.png"); }
