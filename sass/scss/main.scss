@@ -1,6 +1,5 @@
-// cssにコメントが反映されない
-// データ型（数値、　文字列、審議、色、リスト）
-// 条件分岐@if @else 
+// @for @while文をつかってみよう
+// .fs10{font-size: 10px}
 // 
 
 $debugMode: true;
@@ -18,4 +17,14 @@ $x: 10;
 			color: yellow;
 		}
 	}
+}
+
+@for $i from 10 through 14{
+	.fs#{$i} {font-size: #{$i}px;}	
+}
+
+$i: 20;
+@while $i <= 24{
+	.fs#{$i} {font-size: #{$i}px;}
+	$i: $i + 1;	
 }
