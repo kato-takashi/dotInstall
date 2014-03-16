@@ -3,6 +3,8 @@
 $animals: cat, dog, tiger;
 
 @each $animal in $animals{
+//@each $animal in cat, dog, tiger{ //
+//おなじ実行結果
 	.#{$animal}-icon{
 		background: url("#{$animal}.png");
 	}
