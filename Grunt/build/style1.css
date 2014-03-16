@@ -1,7 +1,3 @@
-h2 {
-  color: #bb3333;
-  font-size: 17px;
-  background-image: url("http://dotinstall.com/lessons/basic_less/2605");
-  border-top: 10px solid #ff0000;
-  border-bottom: 20px solid #ff0000;
-}
+/*!圧縮されてもコメントは消えません。
+例）ライセンスなど
+びっくりマーク*/h2{color:#b33;font-size:17px;background-image:url("http://dotinstall.com/lessons/basic_less/2605");border-top:10px solid #f00;border-bottom:20px solid #f00}

@@ -1,6 +1,9 @@
 //Gruntfile.js
 module.exports = function(grunt){
 	/*task:{ //書き方1
+		option{
+			compress: true
+		},
 		target1:{
 			src:...,
 			dest:...
@@ -22,14 +25,17 @@ module.exports = function(grunt){
 	//config
 	grunt.initConfig({
 		less:{
+			options:{
+				compress: true
+			},
 			build1:{
 				/*src: 'src/style1.less',
 				dest: 'build/style1.css'*/
 				files:{
-					//'build/style1.css' : 'src/style1.less' 
+					'build/style1.css' : 'src/style1.less' 
 					//'build/style1.css' : ['src/style1.less', 'src/style2.less']
 					// 'build/style1.css' : 'src/*.less'
-					'build/style1.css' : 'src/**/*.less' //lessファイルの上のディレクトリフォルダが有る場合
+					//'build/style1.css' : 'src/**/*.less' //lessファイルの上のディレクトリフォルダが有る場合
 				}
 			},
 			build2:{
