@@ -1,11 +1,15 @@
-// リスト（にたようなデータをまとめて管理）
-
-$animals: cat, dog, tiger;
-
-@each $animal in $animals{
-//@each $animal in cat, dog, tiger{ //
-//おなじ実行結果
-	.#{$animal}-icon{
-		background: url("#{$animal}.png");
-	}
+// 関数
+// グリッドの幅
+$totalWidth: 940px;
+$columnCount: 10;
+@function getColumnWidth($width, $count){
+	// いろいろ計算
+	$padding: 10px;
+	$columnWidth:floor(($width - ($padding*($count - 1))) / $count);
+	@debug $columnWidth;
+	@return $columnWidth;
+}
+.grid{
+	float: left;
+	width: getColumnWidth($totalWidth, $columnCount);
 }
