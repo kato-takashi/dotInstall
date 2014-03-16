@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>web Storageの勉強</title>
+</head>
+<body>
+	<h1>web Storage</h1>
+	<script>
+		(function(){
+			if(typeof(Storage) === 'undefined'){
+				alert("Web Storageがサポートされていません");
+			}else{
+				console.log('web Storage OK');
+			}
+		})();
+	</script>
+</body>
+</html>
