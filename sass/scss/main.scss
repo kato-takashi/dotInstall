@@ -1,3 +1,22 @@
+// @extend(継承)
+// 
+// 
+.msg{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 2px 4px;
+	color: white;
+}
+.errorMsg{
+	@extend .msg;
+	background: red;
+}
+
+.warningMsg{
+	@extend .msg;
+	background: orange;
+}
+
 @import "settings";
 @import "functions";
 
