@@ -1,7 +1,16 @@
 @import "settings";
 @import "functions";
 
+@mixin round($radius:4){
+	font-size: 22px;
+	border-radius: $radius;
+}
+
+.label{
+	@include round(7);
+}
 .grid{
+	@include round();
 	float: left;
 	width: getColumnWidth($totalWidth, $columnCount);
 }
