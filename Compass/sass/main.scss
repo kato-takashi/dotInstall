@@ -1,7 +1,5 @@
 @import "compass";
-//#06 画像を扱ってみよう
-//
-$padding: 10px;
-.sample{
-	width: image-width("pct01.png") + ($padding*2);
-}
+//css sprite
+
+@import "icons/*.png";
+@include all-icons-sprites;
