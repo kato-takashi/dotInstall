@@ -12,15 +12,21 @@
 				alert("Web Storageがサポートされていません");
 			}else{
 				console.log('web Storage OK');
-				var s = sessionStorage;
-				var l = localStorage;
+				var ss = sessionStorage;
+				var ls = localStorage;
 				//key, value
 				// s.setItem(key, value)
 				// s.getitem(key)
-				s.setItem('name', 'kato');
-				console.log('name saved!');
-				l.setItem('name', 'takashi');
-				console.log(l.getItem('name'));
+				ls.setItem('kato', '70');
+				ls.setItem('takashi', '80');
+				ss.setItem('color', 'blue');
+				ss.setItem('color', 'red');
+
+				//removeItem(key);
+				//clear();
+				
+				ls.removeItem('kato');
+				ss.clear();
 			}
 		})();
 	</script>
