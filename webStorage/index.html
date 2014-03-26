@@ -12,6 +12,17 @@
 				alert("Web Storageがサポートされていません");
 			}else{
 				console.log('web Storage OK');
+				// 仕組み
+				// http//hoge:8000 ->オリジンという
+				// 同一のオリジンにデータを保存
+				//ex) http//hoge:8000/index.html 
+				//http//hoge:8000/cart.html
+				// ディレクトリが異なっても同一のオリジンなら保存されている
+				// 
+				// 種類2
+				// sesshonStrage:タブストレージ.
+				// localStrage:ブラウザ自体に保存.
+				// 
 			}
 		})();
 	</script>
