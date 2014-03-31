@@ -19,14 +19,16 @@
 				// s.getitem(key)
 				ls.setItem('kato', '70');
 				ls.setItem('takashi', '80');
+				ls.setItem('chiahru', '100');
+				ls.setItem('sonoko', '40');
 				ss.setItem('color', 'blue');
 				ss.setItem('color', 'red');
 
 				//removeItem(key);
 				//clear();
-				
-				ls.removeItem('kato');
-				ss.clear();
+				for(var i=0; i<ls.length; i++){
+					console.log(ls.key(i) + ': '+ls.getItem(ls.key(i)));
+				}
 			}
 		})();
 	</script>
