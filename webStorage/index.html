@@ -14,17 +14,16 @@
 				console.log('web Storage OK');
 				var ls = localStorage;
 				
-				var user ={
-					name:"kato",
-					score:80
-				};
-				/*JSON <->文字列 
-				JSON.stringify　文字列に変換
-				JSON.parse  jsonに戻す*/
+				ls.setItem('name', 'kato');
 
-				ls.setItem('user', JSON.stringify(user));
-				// コンソールでオブジェクト展開
-				console.dir(JSON.parse(ls.getItem('user')));
+				window.addEventListener("storage", function(e){
+					//e.key
+					//e.oldValue, e.newValue
+					//e.strageArea
+					//e.url
+					alert("change!");
+					console.log(e.key + ':' + e.oldValue + '->' + e.newValue);
+				});
 
 			}
 		})();
