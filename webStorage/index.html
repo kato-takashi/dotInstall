@@ -12,23 +12,20 @@
 				alert("Web Storageがサポートされていません");
 			}else{
 				console.log('web Storage OK');
-				var ss = sessionStorage;
 				var ls = localStorage;
-				//key, value
-				// s.setItem(key, value)
-				// s.getitem(key)
-				ls.setItem('kato', '70');
-				ls.setItem('takashi', '80');
-				ls.setItem('chiahru', '100');
-				ls.setItem('sonoko', '40');
-				ss.setItem('color', 'blue');
-				ss.setItem('color', 'red');
+				
+				var user ={
+					name:"kato",
+					score:80
+				};
+				/*JSON <->文字列 
+				JSON.stringify　文字列に変換
+				JSON.parse  jsonに戻す*/
 
-				//removeItem(key);
-				//clear();
-				for(var i=0; i<ls.length; i++){
-					console.log(ls.key(i) + ': '+ls.getItem(ls.key(i)));
-				}
+				ls.setItem('user', JSON.stringify(user));
+				// コンソールでオブジェクト展開
+				console.dir(JSON.parse(ls.getItem('user')));
+
 			}
 		})();
 	</script>
