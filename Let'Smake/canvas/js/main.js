@@ -34,4 +34,16 @@ $(function(){
 	.mouseleave(function(e) {
 		isDrawing = false;
 	});
+
+	$('#penColor').change(function(){
+		ctx.strokeStyle = $(this).val();
+	});
+	$('#penWidth').change(function(){
+		ctx.lineWidth = $(this).val();
+	});
+
+	$('#erase').click(function() {
+		if(!confirm('本当に消去しますか？')) return;
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	});
 });
