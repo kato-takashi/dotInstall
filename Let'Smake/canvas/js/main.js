@@ -46,4 +46,24 @@ $(function(){
 		if(!confirm('本当に消去しますか？')) return;
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 	});
+
+	$('#save').click(function() {
+		var img = $('<img>').attr({
+			width:100,
+			height:50,
+			src: canvas.toDataURL() //ブラウザに依存
+		});
+		var link = $('<a>').attr({
+			href:canvas.toDataURL().replace('image/png', 'application/octet-stream'), //download
+			download: new Date().getTime() + '.png' //ブラウザに依存　対応少ない
+		});
+		$('#gallery').append(link.append(img.addClass('thumbnail')));
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	});
 });
+
+
+
+
+
+
