@@ -6,9 +6,28 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<p>
+		<select id="penColor">
+			<option value="black">Black</option>
+			<option value="red">red</option>
+			<option value="blue">blue</option>
+			<option value="white">white</option>
+		</select>
+
+		<select id="penWidth">
+			<option value="1">1px</option>
+			<option value="3">3px</option>
+			<option value="5">5px</option>
+		</select>
+
+		<input type="button" id="erase" value="消去">
+		<input type="button" id="save" value="ギャラリーに追加">
+	</p>
 	<canvas width="400" height="200" id="mycanvas">
 		Canvasに対応したブラウザをご用意ください。
 	</canvas>
-	
+	<div id="gallery"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

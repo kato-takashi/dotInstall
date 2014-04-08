@@ -12,6 +12,19 @@
 				alert("Web Storageがサポートされていません");
 			}else{
 				console.log('web Storage OK');
+				var ls = localStorage;
+				
+				ls.setItem('name', 'kato');
+
+				window.addEventListener("storage", function(e){
+					//e.key
+					//e.oldValue, e.newValue
+					//e.strageArea
+					//e.url
+					alert("change!");
+					console.log(e.key + ':' + e.oldValue + '->' + e.newValue);
+				});
+
 			}
 		})();
 	</script>

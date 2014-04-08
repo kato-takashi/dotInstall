@@ -1,5 +1,5 @@
 @import "compass";
+//css sprite
 
-.sample{
-	@include border-radius(7);
-}
+@import "icons/*.png";
+@include all-icons-sprites;

@@ -1,8 +1,19 @@
-/* line 3, ../sass/main.scss */
-.sample {
-  -webkit-border-radius: 7;
-  -moz-border-radius: 7;
-  -ms-border-radius: 7;
-  -o-border-radius: 7;
-  border-radius: 7;
+/* line 58, icons/*.png */
+.icons-sprite, .icons-icon01, .icons-pct02, .icons-pct03 {
+  background: url('/images/icons-sa636582d68.png') no-repeat;
+}
+
+/* line 60, ../../../../../../../.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-icon01 {
+  background-position: 0 -170px;
+}
+
+/* line 60, ../../../../../../../.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-pct02 {
+  background-position: 0 -85px;
+}
+
+/* line 60, ../../../../../../../.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.icons-pct03 {
+  background-position: 0 0;
 }
