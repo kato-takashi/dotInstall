@@ -23,8 +23,11 @@
 		<ul>
 			<!-- <li ng-repeat="user in users|limitTo:5"> -->
 			<!-- <li ng-repeat="user in users|orderBy:'-score'|limitTo:5"> -->
-			<li ng-repeat="user in users|filter:query" ng-class-even="'even'" ng-class-odd="'odd'">
-				{{$index+1}} {{$first}} {{$last}} {{user.name|uppercase}} : {{user.score|number:4}}点
+			<li ng-repeat="user in users" ng-controller="userItemController">
+				{{user.name}}{{user.score}}
+			<button ng-click="increment()">
+				+1
+			</button>
 			</li>
 		</ul>
 
