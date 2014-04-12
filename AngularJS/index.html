@@ -19,18 +19,17 @@
 <body>
 	<h1>AngularJsの練習</h1>
 	<div ng-controller="mainCtrl">
-		<p><input type="text" ng-model="query.name"></p>
-		<ul>
-			<!-- <li ng-repeat="user in users|limitTo:5"> -->
-			<!-- <li ng-repeat="user in users|orderBy:'-score'|limitTo:5"> -->
-			<li ng-repeat="user in users" ng-controller="userItemController">
-				{{user.name}}{{user.score}}
-			<button ng-click="increment()">
-				+1
-			</button>
-			</li>
-		</ul>
+		<form novalidate name="myForm" ng-submit="addUser()">
+			<p>Name:<input type="text" name="name" ng-model="user.name" required ng-minlength="5" ng-maxlength="8">
+				<span ng-show="myForm.name.$error.required">Reqyured!</span>
 
+				<span ng-show="myForm.name.$error.minlength">too Short!</span>
+
+				<span ng-show="myForm.name.$error.maxlength">too Long!</span>
+			</p>
+			<p><input type="submit" value="add"></p>
+		</form>
+		<pre>{{user|json}}</pre>
 	</div
 	
 	
