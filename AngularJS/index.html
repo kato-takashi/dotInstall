@@ -20,8 +20,18 @@
 	<h1>AngularJs 練習</h1>
 	<div ng-controller="mainCtrl">
 		<form novalidate name="myForm" ng-submit="addUser()">
+			<p>18+<input type="checkbox" ng-model="user.adult" ng-true-value="adult" ng-false-value="child"></p>
 
-			<p>Name:
+			<p>Phone:<input type="radio" ng-model="user.phone" value="iPhone">iPhone
+				Phone:<input type="radio" ng-model="user.phone" value="Android">Android 
+			</p>
+
+			<p>18+<input type="checkbox" ng-model="user.adult" ng-true-value="adult" ng-false-value="child"></p>
+
+			<p>Memo:
+				<textarea ng-model="user.memo" ng-maxlength="140"></textarea>{{140-user.memo.length}}
+			</p>
+			<!-- <p>Name:
 				<input type="name" name="name" ng-model="user.name" required ng-minlength="5" ng-maxlength="8" >
 				<span ng-show="myForm.name.$error.required">Required!</span>
 
@@ -42,7 +52,7 @@
 				URL:
 				<input type="url" name="url" ng-model="user.url" >
 				<span ng-show="myForm.url.$error.url">Not Valid url!</span>
-			</p>
+			</p> -->
 			<p><input type="submit" value="add"></p>
 		</form>
 		<pre>{{user|json}}</pre>
