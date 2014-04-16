@@ -20,16 +20,8 @@
 	<h1>AngularJs 練習</h1>
 	<div ng-controller="mainCtrl">
 		<form novalidate name="myForm" ng-submit="addUser()">
-			<p>18+<input type="checkbox" ng-model="user.adult" ng-true-value="adult" ng-false-value="child"></p>
-
-			<p>Phone:<input type="radio" ng-model="user.phone" value="iPhone">iPhone
-				Phone:<input type="radio" ng-model="user.phone" value="Android">Android 
-			</p>
-
-			<p>18+<input type="checkbox" ng-model="user.adult" ng-true-value="adult" ng-false-value="child"></p>
-
-			<p>Memo:
-				<textarea ng-model="user.memo" ng-maxlength="140"></textarea>{{140-user.memo.length}}
+			<p>Color:
+			<select ng-model="user.color" ng-options="'label:'+color for color in ['red', 'blue', 'pink']" ng-init="user.color='red'"></select>
 			</p>
 			<!-- <p>Name:
 				<input type="name" name="name" ng-model="user.name" required ng-minlength="5" ng-maxlength="8" >
