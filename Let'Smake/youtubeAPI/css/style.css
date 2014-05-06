@@ -6,3 +6,14 @@ body{
 	width: 640px;
 	height:360px;
 }
+ul{
+	list-style-type: none; 
+	padding: 0;
+	margin: 0;	
+}
+
+li.movie{
+	float: left;
+	width: 120px;
+	padding: 10px;
+}
